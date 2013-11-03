@@ -4,15 +4,14 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
+          <string>icons/tnt_tweetWall.png</string>
           <string>META-INF/definitions.cnd</string>
           <string>META-INF/rules.drl.disabled</string>
           <string>META-INF/spring/tweetwall.xml.disabled</string>
+          <string>tnt_tweetWall/html/tweetWall.jsp</string>
           <string>WEB-INF/lib/tweetwall-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/twitter4j-core-3.0.5.jar</string>
           <string>WEB-INF/lib/twitter4j-stream-3.0.5.jar</string>
-          <string>WEB-INF/lib/jstl-1.1.2.jar</string>
-          <string>WEB-INF/lib/servlet-api-2.4.jar</string>
-          <string>WEB-INF/lib/jsp-api-2.0.jar</string>
         </pathsSet>
       </path-set>
     </entry>
@@ -48,11 +47,10 @@
         <artifactId>jstl</artifactId>
         <version>1.1.2</version>
         <type>jar</type>
-        <scope>compile</scope>
+        <scope>provided</scope>
         <exclusions/>
         <optional>false</optional>
       </dependency>
-      <targetFileName>jstl-1.1.2.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>
@@ -60,11 +58,10 @@
         <artifactId>servlet-api</artifactId>
         <version>2.4</version>
         <type>jar</type>
-        <scope>compile</scope>
+        <scope>provided</scope>
         <exclusions/>
         <optional>false</optional>
       </dependency>
-      <targetFileName>servlet-api-2.4.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>
@@ -72,11 +69,10 @@
         <artifactId>jsp-api</artifactId>
         <version>2.0</version>
         <type>jar</type>
-        <scope>compile</scope>
+        <scope>provided</scope>
         <exclusions/>
         <optional>false</optional>
       </dependency>
-      <targetFileName>jsp-api-2.0.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
   </dependenciesInfo>
 </webapp-structure>

@@ -1,2 +1,7 @@
-<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
-<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<tnt = 'http://www.twitter.com/jahia/nt/1.0'>
+<tmix = 'http://www.twitter.com/jahia/mix/1.0'>
+
+[tnt:tweetWall] > jnt:content, jmix:socialComponent
+- title (string) indexed=no mandatory
+- logo (weakreference, picker[type='image'])
+- track (string) indexed=no mandatory  
