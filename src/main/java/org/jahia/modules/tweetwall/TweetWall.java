@@ -3,7 +3,6 @@ package org.jahia.modules.tweetwall;
 import java.io.IOException;
 
 import org.jahia.modules.tweetwall.websocket.TweetWallClient;
-import org.jahia.modules.tweetwall.websocket.TweetWallServer;
 
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -13,16 +12,15 @@ import twitter4j.StatusListener;
 import com.google.gson.Gson;
 
 public class TweetWall {
-
 	public static void main(String[] args) {
 		String[] keywords = { "Microsoft" };
 		String[] languages = { "en" };
-		TweetWallServer.startServer();
+
 		TwitterListener.listen(new StatusListener() {
 			public void onStatus(Status status) {
-				String JSONTweet = new Gson().toJson(status);
+				String JSONStatus = new Gson().toJson(status);
 				try {
-					TweetWallClient.getSession().getBasicRemote().sendText(JSONTweet);
+					TweetWallClient.getSession().getBasicRemote().sendText(JSONStatus);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

@@ -6,7 +6,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.jahia.modules.tweetwall.websocket.TweetWallClient;
-import org.jahia.modules.tweetwall.websocket.TweetWallServer;
 
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -19,7 +18,7 @@ public class TweetWallTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		String[] keywords = { "Microsoft" };
 		String[] languages = { "en" };
-		TweetWallServer.startServer();
+
 		TwitterListener.listen(new StatusListener() {
 			public void onStatus(Status status) {
 				String JSONStatus = new Gson().toJson(status);
