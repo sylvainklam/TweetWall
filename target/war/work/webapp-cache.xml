@@ -12,6 +12,18 @@
           <string>WEB-INF/lib/tweetwall-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/twitter4j-core-3.0.5.jar</string>
           <string>WEB-INF/lib/twitter4j-stream-3.0.5.jar</string>
+          <string>WEB-INF/lib/javax.websocket-api-1.0.jar</string>
+          <string>WEB-INF/lib/tyrus-server-1.2.1.jar</string>
+          <string>WEB-INF/lib/tyrus-core-1.2.1.jar</string>
+          <string>WEB-INF/lib/tyrus-spi-1.2.1.jar</string>
+          <string>WEB-INF/lib/tyrus-websocket-core-1.2.1.jar</string>
+          <string>WEB-INF/lib/tyrus-client-1.2.1.jar</string>
+          <string>WEB-INF/lib/tyrus-container-grizzly-1.2.1.jar</string>
+          <string>WEB-INF/lib/grizzly-framework-2.3.3.jar</string>
+          <string>WEB-INF/lib/grizzly-http-server-2.3.3.jar</string>
+          <string>WEB-INF/lib/grizzly-http-2.3.3.jar</string>
+          <string>WEB-INF/lib/grizzly-rcm-2.3.3.jar</string>
+          <string>WEB-INF/lib/gson-2.2.4.jar</string>
         </pathsSet>
       </path-set>
     </entry>
@@ -73,6 +85,66 @@
         <exclusions/>
         <optional>false</optional>
       </dependency>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>javax.websocket</groupId>
+        <artifactId>javax.websocket-api</artifactId>
+        <version>1.0</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>javax.websocket-api-1.0.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-server</artifactId>
+        <version>1.2.1</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>tyrus-server-1.2.1.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-client</artifactId>
+        <version>1.2.1</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>tyrus-client-1.2.1.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-container-grizzly</artifactId>
+        <version>1.2.1</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>tyrus-container-grizzly-1.2.1.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.2.4</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+      <targetFileName>gson-2.2.4.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
   </dependenciesInfo>
 </webapp-structure>

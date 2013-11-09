@@ -5,30 +5,32 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import org.jahia.modules.tweetwall.websocket.TweetWallClient;
+import org.jahia.modules.tweetwall.websocket.TweetWallServer;
+
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
 
+import com.google.gson.Gson;
+
 public class TweetWallTag extends SimpleTagSupport {
 	public void doTag() throws JspException, IOException {
 		String[] keywords = { "Microsoft" };
 		String[] languages = { "en" };
+		TweetWallServer.startServer();
 		TwitterListener.listen(new StatusListener() {
 			public void onStatus(Status status) {
+				String JSONStatus = new Gson().toJson(status);
 				try {
-					getJspContext().getOut().print(
-							status.getUser().getScreenName() + " > "
-									+ status.getText());
-					// getJspBody().invoke(null);
+					TweetWallClient.getSession().getBasicRemote().sendText(JSONStatus);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 
-			public void onDeletionNotice(
-					StatusDeletionNotice statusDeletionNotice) {
+			public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
 			}
 
 			public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
@@ -41,10 +43,7 @@ public class TweetWallTag extends SimpleTagSupport {
 			}
 
 			public void onStallWarning(StallWarning arg0) {
-				// TODO Auto-generated method stub
-
 			}
 		}, keywords, languages);
-
 	}
 }
