@@ -1,4 +1,5 @@
 package org.jahia.modules.tweetwall.actions;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class StartTweetWallServer extends Action {
 	@Override
 	public ActionResult doExecute(HttpServletRequest req, RenderContext renderContext, Resource resource, JCRSessionWrapper session,
 			Map<String, List<String>> parameters, URLResolver urlResolver) throws Exception {
-		TweetWallServer.startServer();		
+		TweetWallServer.startServer();
 		return null;
 	}
 }
