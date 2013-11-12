@@ -7,17 +7,26 @@ var requete;
 
 function sendCmdServer(url)
 {
-	alert("url : "+url)
 	if (window.XMLHttpRequest) {
 		requete = new XMLHttpRequest();
 	} else if (window.ActiveXObject) {
 		requete = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	requete.open("GET", url, true);
+	requete.onreadystatechange = majIHM(url);	
 	requete.send(null);
-	if (requete.readyState == 4) {
-		if (requete.status == 200) {
-			
+}
+
+function majIHM(url)
+{
+	return function() {
+		if (requete.readyState == 4) {
+			if (requete.status == 200) {
+				mdiv = document.getElementById("serverStatus");
+				if (url.indexOf("start") != -1) mdiv.innerHTML = "<font color=green>server started</font>";
+				else if (url.indexOf("stop") != -1) mdiv.innerHTML = "<font color=red>server stopped</font>";
+				else mdiv.innerHTML = "<p>????</p>";
+			}
 		}
 	}
 }
@@ -30,13 +39,13 @@ function sendCmdServer(url)
 	<div class="page-header">
 		<h1>${currentNode.properties.title.string}</h1>
 	</div>
-	<c:if test="${ renderContext.editMode}">
+	<c:if test="${renderContext.editMode}">
 		<div class="starter-template">
 	        <h1>You are now on Edit Mode</h1>
 	        <p class="lead">You are going to track tweets with keyword(s) : <b>${currentNode.properties.track.string}</b><br> Go to Preview Mode and click on 'Start' button to launch Tweet Wall.</p>
 	    </div>
 	</c:if>
-	<c:if test="${ renderContext.previewMode}">
+	<c:if test="${renderContext.previewMode}">
 		<div class="starter-template">
 	        <h1>You are now on Preview Mode</h1>
 	        <p class="lead">You are going to track tweets with keyword(s) : <b>${currentNode.properties.track.string}</b><br> Click on 'Start' button to launch Tweet Wall.</p>
@@ -45,10 +54,12 @@ function sendCmdServer(url)
 		  <a href="#" onclick="sendCmdServer('${startTWSURL}');"><button type="button" class="btn btn-default" id="btn_start_server">Start</button></a>
 		  <a href="#" onclick="sendCmdServer('${stopTWSURL}');"><button type="button" class="btn btn-default" id="btn_stop_server">Stop</button></a>
 		</div>
+		<div id="serverStatus"></div>
 	</c:if>
-	<!-- 
-	<c:if test="${ not renderContext.editMode}">
-		<tweetwall:display />
+	<c:if test="${renderContext.liveMode}">
+		<div class="starter-template">
+	        <h1>You are now on Live Mode</h1>
+	        <p class="lead">Have fun with this tweet wall !!</p>
+	    </div>
 	</c:if>
-	 -->
 </div>
