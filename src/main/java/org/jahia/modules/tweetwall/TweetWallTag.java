@@ -16,6 +16,7 @@ import twitter4j.StatusListener;
 import com.google.gson.Gson;
 
 public class TweetWallTag extends SimpleTagSupport {
+
 	private static Logger logger = Logger.getLogger(TweetWallTag.class);
 
 	public void doTag() throws JspException, IOException {
@@ -28,7 +29,7 @@ public class TweetWallTag extends SimpleTagSupport {
 				try {
 					TweetWallClient.getSession().getBasicRemote().sendText(JSONTweet);
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 
@@ -45,8 +46,7 @@ public class TweetWallTag extends SimpleTagSupport {
 			}
 
 			public void onException(Exception ex) {
-				logger.info("onException");
-				TwitterListener.stop();
+
 			}
 
 			public void onStallWarning(StallWarning arg0) {

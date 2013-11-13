@@ -7,7 +7,7 @@ import org.glassfish.tyrus.client.ClientManager;
 public class TweetWallClient {
 	private static Session session = null;
 
-	public static synchronized Session getSession() {
+	public static Session getSession() {
 		if (session == null) {
 			try {
 				ClientManager client = ClientManager.createClient();

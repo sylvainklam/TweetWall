@@ -17,7 +17,7 @@ public class TweetWallClientEndPoint {
 		logger.info("Tweet Wall Client end point opened.");
 		session.addMessageHandler(new MessageHandler.Whole<String>() {
 			public void onMessage(String message) {
-				logger.info("Received message: " + message);
+				logger.info(message);
 			}
 		});
 		logger.info("Message handler added.");

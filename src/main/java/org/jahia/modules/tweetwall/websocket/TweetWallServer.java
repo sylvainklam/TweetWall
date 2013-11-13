@@ -19,7 +19,7 @@ public class TweetWallServer {
 
 	private static URI serverEndPointURI = null;
 
-	private static synchronized Server getInstance() {
+	private static Server getInstance() {
 		if (server == null)
 			server = new Server(HOST, PORT, WS_PATH, TweetWallServerEndPoint.class);
 		return server;
@@ -33,7 +33,7 @@ public class TweetWallServer {
 		}
 	}
 
-	public static synchronized URI getServerEndPointURI() throws URISyntaxException {
+	public static URI getServerEndPointURI() throws URISyntaxException {
 		if (serverEndPointURI == null)
 			serverEndPointURI = new URI("ws://" + HOST + ":" + PORT + WS_PATH + ENDPOINT_PATH);
 		return serverEndPointURI;
