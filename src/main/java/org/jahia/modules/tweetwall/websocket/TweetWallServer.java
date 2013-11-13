@@ -11,11 +11,11 @@ public class TweetWallServer {
 
 	private static Server server = null;
 
-	private static final String HOST = "tweetwall";
+	private static final String HOST = "localhost";
 	private static final String WS_PATH = "/websocket";
 	private static final String ENDPOINT_PATH = "/tw";
 
-	private static final int PORT = 9999;
+	private static final int PORT = 8000;
 
 	private static URI serverEndPointURI = null;
 
@@ -25,15 +25,12 @@ public class TweetWallServer {
 		return server;
 	}
 
-	public static boolean startServer() {
-		boolean started = false;
+	public static void startServer() {
 		try {
 			getInstance().start();
-			started = true;
 		} catch (DeploymentException e) {
 			e.printStackTrace();
 		}
-		return started;
 	}
 
 	public static synchronized URI getServerEndPointURI() throws URISyntaxException {
@@ -44,22 +41,5 @@ public class TweetWallServer {
 
 	public static void stopServer() {
 		getInstance().stop();
-	}
-
-	public static void main(String[] args) {
-		Server server = TweetWallServer.getInstance();
-		if (server == null)
-			System.err.println("unable to create server");
-		else {
-			System.out.println("server created");
-			if (!startServer())
-				System.err.println("unable to start server");
-			else {
-				System.out.println("server started");
-				startServer();
-				stopServer();
-			}
-		}
-
 	}
 }

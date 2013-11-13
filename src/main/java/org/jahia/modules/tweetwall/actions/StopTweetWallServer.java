@@ -18,7 +18,6 @@ public class StopTweetWallServer extends Action {
 	public ActionResult doExecute(HttpServletRequest req, RenderContext renderContext, Resource resource, JCRSessionWrapper session,
 			Map<String, List<String>> parameters, URLResolver urlResolver) throws Exception {
 		TweetWallServer.stopServer();
-		req.getSession().setAttribute("serverStatus", "stop");
 		return null;
 	}
 }

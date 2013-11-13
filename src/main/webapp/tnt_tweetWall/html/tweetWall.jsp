@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tweetwall" uri="http://www.tweetwall.org/jahia" %>
 
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 
@@ -30,6 +31,27 @@ function majIHM(url)
 		}
 	}
 }
+
+$(function() {
+    if (window["WebSocket"]) {
+            var conn = new WebSocket('ws://localhost:8000/websocket/tw');
+
+            conn.onopen = function(evt) {
+            	$("#log").prepend('<div>Socket opened</div>');
+            };
+            
+            conn.onmessage = function(evt) {
+            	$("#log").prepend('<div>an event has occured</div>');    
+            };
+
+            conn.onclose = function(evt) {
+            	$("#log").prepend('<div class=\"alert-message error\">Socket closed</div>');
+            };
+            
+    } else {
+            $("#log").prepend('<div class=\"alert-message error\">Browser does not support web sockets</div>')
+    }
+});
 </script>
 
 <c:url value="${url.base}${currentNode.path}.startTWS.do" var="startTWSURL"/>
@@ -61,5 +83,9 @@ function majIHM(url)
 	        <h1>You are now on Live Mode</h1>
 	        <p class="lead">Have fun with this tweet wall !!</p>
 	    </div>
+	    <tweetwall:display/>
+	    <div>
+        	<div id="log"></div>
+		</div>
 	</c:if>
 </div>
