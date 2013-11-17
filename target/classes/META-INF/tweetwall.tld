@@ -16,5 +16,15 @@
     	<name>display</name>
     	<tag-class>org.jahia.modules.tweetwall.TweetWallTag</tag-class>
     	<body-content>empty</body-content>
+    	<attribute>
+			<name>keywords</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+    	<attribute>
+			<name>language</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
     </tag>
 </taglib>

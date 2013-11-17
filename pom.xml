@@ -127,6 +127,12 @@
 	      <version>6.6.2.0</version>
 	      <scope>provided</scope>
 	  </dependency>
+	  <dependency>
+	      <groupId>org.jahia.server</groupId>
+	      <artifactId>jahia-taglib</artifactId>
+	      <version>6.6.2.0</version>
+	      <scope>provided</scope>
+	  </dependency>
    </dependencies>
     <pluginRepositories>
         <pluginRepository>
@@ -167,7 +173,6 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <warSourceExcludes>resources/*.properties</warSourceExcludes>
                     <webResources>
                         <resource>
                           <directory>/native2ascii</directory>

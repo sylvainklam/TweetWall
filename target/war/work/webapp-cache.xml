@@ -5,9 +5,13 @@
       <path-set>
         <pathsSet class="linked-hash-set">
           <string>icons/tnt_tweetWall.png</string>
+          <string>javascript/tweetwall.js</string>
           <string>META-INF/definitions.cnd</string>
           <string>META-INF/rules.drl.disabled</string>
           <string>META-INF/spring/tweetwall.xml</string>
+          <string>resources/JahiaTweetWall.properties</string>
+          <string>resources/JahiaTweetWall_en.properties</string>
+          <string>resources/JahiaTweetWall_fr.properties</string>
           <string>tnt_tweetWall/html/tweetWall.jsp</string>
           <string>WEB-INF/lib/tweetwall-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/twitter4j-core-3.0.5.jar</string>
@@ -150,6 +154,17 @@
       <dependency>
         <groupId>org.jahia.server</groupId>
         <artifactId>jahia-impl</artifactId>
+        <version>6.6.2.0</version>
+        <type>jar</type>
+        <scope>provided</scope>
+        <exclusions/>
+        <optional>false</optional>
+      </dependency>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.jahia.server</groupId>
+        <artifactId>jahia-taglib</artifactId>
         <version>6.6.2.0</version>
         <type>jar</type>
         <scope>provided</scope>
