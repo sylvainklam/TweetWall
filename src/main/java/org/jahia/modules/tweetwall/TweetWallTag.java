@@ -6,7 +6,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.log4j.Logger;
-import org.jahia.modules.tweetwall.utils.TWUtils;
+import org.jahia.modules.tweetwall.utils.TweetWallUtils;
 import org.jahia.modules.tweetwall.websocket.TweetWallClient;
 
 import twitter4j.StallWarning;
@@ -18,16 +18,17 @@ import com.google.gson.Gson;
 
 public class TweetWallTag extends SimpleTagSupport {
 
-	private String keywords;
-	private String language;
+	private String keywords = null;
+	private String language = null;
 
 	private static Logger logger = Logger.getLogger(TweetWallTag.class);
 
 	public void doTag() throws JspException, IOException {
-		String[] keywords = TWUtils.convert2Array(getKeywords());
-		String[] languages = TWUtils.convert2Array(getLanguage());
+		String[] keywords = TweetWallUtils.getInstance().convert2Array(getKeywords());
+		String[] languages = TweetWallUtils.getInstance().convert2Array(getLanguage());
 
-		logger.info("keywords : " + TWUtils.printArrayValues(keywords) + " - language : " + TWUtils.printArrayValues(languages));
+		logger.info("keywords : " + TweetWallUtils.getInstance().printArrayValues(keywords) + " - language : "
+				+ TweetWallUtils.getInstance().printArrayValues(languages));
 
 		TwitterListener.listen(new StatusListener() {
 			public void onStatus(Status status) {
@@ -53,7 +54,7 @@ public class TweetWallTag extends SimpleTagSupport {
 			}
 
 			public void onException(Exception ex) {
-
+				logger.error(ex.getMessage());
 			}
 
 			public void onStallWarning(StallWarning arg0) {

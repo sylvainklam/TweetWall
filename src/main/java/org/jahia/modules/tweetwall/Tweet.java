@@ -56,5 +56,4 @@ public class Tweet {
 	public void setIconURL(String iconURL) {
 		this.iconURL = iconURL;
 	}
-
 }

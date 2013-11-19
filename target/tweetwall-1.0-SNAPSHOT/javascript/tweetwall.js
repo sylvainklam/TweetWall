@@ -41,7 +41,7 @@ $(function() {
                  }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
                  return reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'">'+reply.substring(1)+'</a>';
                  });
-                $('#log').prepend('<h3><a href=\"http://twitter.com/' + d.screenname + '\">' + d.screenname + '</a><small> ' + d.user + ' </small></h3><blockquote><p>' + status + '</p> <small>' + d.date + '</small></blockquote>');    
+                $('#log').prepend('<h3><a href=\"http://twitter.com/' + d.screenname + '\"><img src=\"'+d.iconURL+'\"></a><small> ' + d.user + ' </small></h3><blockquote><p>' + status + '</p> <small>' + d.date + '</small></blockquote>');    
             };
 
             conn.onclose = function(evt) {

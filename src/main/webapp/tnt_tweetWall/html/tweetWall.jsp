@@ -12,14 +12,12 @@
 	
 <h1>${currentNode.properties.title.string}</h1>
 <c:if test="${renderContext.editMode}">
-	<h1>You are now on Edit Mode</h1>
-	<p>You are going to track tweets with keyword(s) : <b>${currentNode.properties.track.string}</b>
+	<p>You are going to track tweets with the following hashtag(s) : <b>${currentNode.properties.track.string}</b>
 	<br>Tweets language : ${currentResource.locale.displayLanguage} 
 	<br>Go to Preview Mode and click on 'Start' button to launch Tweet Wall.</p>
 </c:if>
 <c:if test="${renderContext.previewMode}">
-	<h1>You are now on Preview Mode</h1>
-	<p>You are going to track tweets with keyword(s) : <b>${currentNode.properties.track.string}</b>
+	<p>You are going to track tweets with the following hashtag(s) : <b>${currentNode.properties.track.string}</b>
 	<br>Tweets language : ${currentResource.locale.displayLanguage}
 	<br> Click on 'Start'/'Stop' button to launch/stop Tweet Wall.</p>
 	<a href="#" onclick="sendCmdServer('${startTWSURL}');"><button type="button" class="btn btn-default">Start</button></a>
@@ -27,6 +25,7 @@
 	<br><br><div id="serverStatus"></div>
 </c:if>
 <c:if test="${renderContext.liveMode}">
+	<p>Envoyez un tweet avec le(s) hashtag(s) suivant(s) <b>${currentNode.properties.track.string}</b></p>
 	<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}"/>
 	<div id="log"></div>
 </c:if>

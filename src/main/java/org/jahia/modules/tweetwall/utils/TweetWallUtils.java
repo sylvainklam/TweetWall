@@ -1,11 +1,19 @@
 package org.jahia.modules.tweetwall.utils;
 
-import com.ibm.icu.util.StringTokenizer;
+import java.util.StringTokenizer;
 
-public class TWUtils {
+public class TweetWallUtils {
 	private static final String SEPARATOR = ",";
 
-	public static String[] convert2Array(String s) {
+	private static TweetWallUtils instance = null;
+
+	public static synchronized TweetWallUtils getInstance() {
+		if (instance == null)
+			instance = new TweetWallUtils();
+		return instance;
+	}
+
+	public String[] convert2Array(String s) {
 		StringTokenizer stringTokenizer = new StringTokenizer(s, SEPARATOR);
 		String[] sTab = new String[stringTokenizer.countTokens()];
 		int i = 0;
@@ -16,10 +24,10 @@ public class TWUtils {
 		return sTab;
 	}
 
-	public static String printArrayValues(String[] tab) {
+	public String printArrayValues(String[] tab) {
 		StringBuffer arrayToPrint = new StringBuffer("{");
 		for (int i = 0; i < tab.length; i++) {
-			arrayToPrint.append(tab[i]).append(",");
+			arrayToPrint.append(tab[i]).append(SEPARATOR);
 		}
 		return arrayToPrint.toString().substring(0, arrayToPrint.length() - 1).concat("}");
 	}
