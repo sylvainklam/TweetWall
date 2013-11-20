@@ -49,9 +49,8 @@ public class TweetWallServer {
 
 	public static synchronized URI getServerEndPointURI() throws URISyntaxException, FileNotFoundException, IOException {
 		if (serverEndPointURI == null) {
-			Properties WSProperties = PropertiesLoader.load("/websocket.properties");
-			String host = WSProperties.getProperty(HOST_PROPERTY);
-			String port = WSProperties.getProperty(PORT_PROPERTY);
+			String host = getWSProperties().getProperty(HOST_PROPERTY);
+			String port = getWSProperties().getProperty(PORT_PROPERTY);
 			serverEndPointURI = new URI("ws://" + host + ":" + Integer.parseInt(port) + WS_PATH + ENDPOINT_PATH);
 		}
 		return serverEndPointURI;
