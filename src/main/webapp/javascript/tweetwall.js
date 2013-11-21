@@ -1,6 +1,6 @@
 var requete;
 
-function sendCmdServer(url)
+function sendCmdServer(url,msg)
 {
 	if (window.XMLHttpRequest) {
 		requete = new XMLHttpRequest();
@@ -8,18 +8,18 @@ function sendCmdServer(url)
 		requete = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	requete.open("GET", url, true);
-	requete.onreadystatechange = majIHM(url);	
+	requete.onreadystatechange = majIHM(url,msg);	
 	requete.send(null);
 }
 
-function majIHM(url)
+function majIHM(url,msg)
 {
 	return function() {
 		if (requete.readyState == 4) {
 			if (requete.status == 200) {
 				mdiv = document.getElementById("serverStatus");
-				if (url.indexOf("start") != -1) mdiv.innerHTML = "<font color=green>Websocket Server started</font>";
-				else if (url.indexOf("stop") != -1) mdiv.innerHTML = "<font color=red>Websocket Server stopped</font>";
+				if (url.indexOf("start") != -1) mdiv.innerHTML = "<font color=green>"+msg+"</font>";
+				else if (url.indexOf("stop") != -1) mdiv.innerHTML = "<font color=red>"+msg+"</font>";
 			}
 		}
 	}
@@ -30,7 +30,7 @@ $(function() {
             var conn = new WebSocket('ws://localhost:8000/websocket/tw');
 
             conn.onopen = function(evt) {
-            	$("#log").prepend('<div>Tweet wall launched.</div>');
+            	$("#log").prepend('<div><font color=green>Tweet wall launched.</font></div>');
             };
             
             conn.onmessage = function(evt) {
@@ -45,10 +45,10 @@ $(function() {
             };
 
             conn.onclose = function(evt) {
-            	$("#log").prepend('<div>Tweet wall stopped.</div>');
+            	$("#log").prepend('<div><font color=red>Tweet wall stopped.</font></div>');
             };
             
     } else {
-            $("#log").prepend('<div>Your browser does not support web sockets</div>')
+            $("#log").prepend('<div><font color=red>Your browser does not support web sockets</font></div>')
     }
 });
