@@ -32,3 +32,4 @@
 	<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}"/>
 	<div id="log"></div>
 </c:if>
+<div id="twsURL" hidden="true"></div>

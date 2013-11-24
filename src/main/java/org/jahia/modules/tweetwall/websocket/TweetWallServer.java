@@ -56,6 +56,12 @@ public class TweetWallServer {
 		return serverEndPointURI;
 	}
 
+	public static String getURL() throws FileNotFoundException, IOException {
+		String host = getWSProperties().getProperty(HOST_PROPERTY);
+		String port = getWSProperties().getProperty(PORT_PROPERTY);
+		return "ws://" + host + ":" + Integer.parseInt(port) + WS_PATH + ENDPOINT_PATH;
+	}
+
 	public static void stopServer() throws FileNotFoundException, IOException {
 		getInstance().stop();
 	}
