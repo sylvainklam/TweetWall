@@ -1,5 +1,4 @@
 var requete;
-var mtwsURL;
 
 function sendCmdServer(url,msg)
 {
@@ -18,7 +17,6 @@ function majIHM(url,msg)
 	return function() {
 		if (requete.readyState == 4 && requete.status == 200) {
 			mdiv = document.getElementById("serverStatus");
-			mtwsURL = document.getElementById("twsURL");
 			if (url.indexOf("start") != -1) {
 				mdiv.innerHTML = "<font color=green>"+msg+"</font>";
 				if (localStorage.getItem("TWSURL") == undefined 
@@ -31,6 +29,15 @@ function majIHM(url,msg)
 			else if (url.indexOf("stop") != -1) mdiv.innerHTML = "<font color=red>"+msg+"</font>";
 		}
 	}
+}
+
+function goFullscreen(id) {
+    var element = document.getElementById(id);
+    if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+      element.webkitRequestFullScreen();
+   }
 }
 
 $(function() {
