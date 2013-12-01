@@ -7,14 +7,16 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 
 <template:addResources type="javascript" resources="tweetwall.js"/>
+<template:addResources type="css" resources="tweetwall.css"/>
 
-<c:url value="${url.base}${currentNode.path}.startTWS.do" var="startTWSURL"/>
-<c:url value="${url.base}${currentNode.path}.stopTWS.do" var="stopTWSURL"/>
+<c:url value="${url.base}${currentNode.path}.startTWS.do?host=${currentNode.properties.wshost.string}&port=${currentNode.properties.wsport.string}" var="startTWSURL"/>
+<c:url value="${url.base}${currentNode.path}.stopTWS.do?host=${currentNode.properties.wshost.string}&port=${currentNode.properties.wsport.string}" var="stopTWSURL"/>
 	
 <c:if test="${renderContext.editMode}">
 	<img src="${currentNode.properties.logo.node.url}" />
 	<p><fmt:message key="org.jahia.modules.tweetwall.track.intro"/> : <b>${currentNode.properties.track.string}</b>
-	<br><br><fmt:message key="org.jahia.modules.tweetwall.language"/> : <b>${currentResource.locale.displayLanguage}</b> 
+	<br><br><fmt:message key="org.jahia.modules.tweetwall.language"/> : <b>${currentResource.locale.displayLanguage}</b>
+	<br><br>Serveur WebSocket : <b>${currentNode.properties.wshost.string}</b>, port : <b>${currentNode.properties.wsport.long}</b> 
 	<br><br><fmt:message key="org.jahia.modules.tweetwall.edit.howtolaunch"/></p>
 </c:if>
 <c:if test="${renderContext.previewMode}">
@@ -29,7 +31,7 @@
 	<br><br><div id="serverStatus"></div>
 </c:if>
 <c:if test="${renderContext.liveMode}">
-	<div id="tweetwall">
+	<div id="tweetwall" class="tweetwall">
 		<table>
 		<tr>
 			<td><img src="${currentNode.properties.logo.node.url}" /></td>
@@ -37,7 +39,11 @@
 		</tr>
 		</table>
 		<h2><fmt:message key="org.jahia.modules.tweetwall.live.howto"/> : <b>${currentNode.properties.track.string}</b></h2>
-		<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}"/>
-		<div id="log" style="overflow:auto;word-wrap:break-word;"></div>
+		<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}" 
+			wshost="${currentNode.properties.wshost.string}" wsport="${currentNode.properties.wsport.long}"
+			debugEnabled="${currentNode.properties.debug.boolean}" OAuthConsumerKey="${currentNode.properties.OAuthConsumerKey.string}" 
+			OAuthConsumerSecret="${currentNode.properties.OAuthConsumerSecret.string}" OAuthAccessToken="${currentNode.properties.OAuthAccessToken.string}" 
+			OAuthAccessTokenSecret="${currentNode.properties.OAuthAccessTokenSecret.string}"/>
+		<div id="log"></div>
 	</div>	
 </c:if>

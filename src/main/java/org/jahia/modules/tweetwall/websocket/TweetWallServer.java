@@ -4,65 +4,62 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Properties;
 
 import javax.websocket.DeploymentException;
 
 import org.glassfish.tyrus.server.Server;
-import org.jahia.modules.tweetwall.utils.PropertiesLoader;
 
 public class TweetWallServer {
 
 	private static Server server = null;
-	private static Properties WSProperties = null;
+	// private static Properties WSProperties = null;
 
-	private static final String HOST_PROPERTY = "websocket.server.host";
-	private static final String PORT_PROPERTY = "websocket.server.port";
+	// private static final String HOST_PROPERTY = "websocket.server.host";
+	// private static final String PORT_PROPERTY = "websocket.server.port";
 
 	private static final String WS_PATH = "/websocket";
 	private static final String ENDPOINT_PATH = "/tw";
 
 	private static URI serverEndPointURI = null;
 
-	private static synchronized Properties getWSProperties() throws FileNotFoundException, IOException {
-		if (WSProperties == null)
-			WSProperties = PropertiesLoader.load("/websocket.properties");
-		return WSProperties;
-	}
+	// private static synchronized Properties getWSProperties() throws
+	// FileNotFoundException, IOException {
+	// if (WSProperties == null)
+	// WSProperties = PropertiesLoader.load("/websocket.properties");
+	// return WSProperties;
+	// }
 
-	private static synchronized Server getInstance() throws FileNotFoundException, IOException {
+	private static synchronized Server getInstance(String host, String port) throws FileNotFoundException, IOException {
 		if (server == null) {
-			String host = getWSProperties().getProperty(HOST_PROPERTY);
-			String port = getWSProperties().getProperty(PORT_PROPERTY);
 			server = new Server(host, Integer.parseInt(port), WS_PATH, TweetWallServerEndPoint.class);
 		}
 		return server;
 	}
 
-	public static void startServer() throws FileNotFoundException, IOException {
+	public static void startServer(String host, String port) throws FileNotFoundException, IOException {
 		try {
-			getInstance().start();
+			getInstance(host, port).start();
 		} catch (DeploymentException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static synchronized URI getServerEndPointURI() throws URISyntaxException, FileNotFoundException, IOException {
+	public static synchronized URI getServerEndPointURI(String host, String port) throws URISyntaxException, FileNotFoundException, IOException {
 		if (serverEndPointURI == null) {
-			String host = getWSProperties().getProperty(HOST_PROPERTY);
-			String port = getWSProperties().getProperty(PORT_PROPERTY);
-			serverEndPointURI = new URI("ws://" + host + ":" + Integer.parseInt(port) + WS_PATH + ENDPOINT_PATH);
+			// String host = getWSProperties().getProperty(HOST_PROPERTY);
+			// String port = getWSProperties().getProperty(PORT_PROPERTY);
+			serverEndPointURI = new URI("ws://" + host + ":" + port + WS_PATH + ENDPOINT_PATH);
 		}
 		return serverEndPointURI;
 	}
 
-	public static String getURL() throws FileNotFoundException, IOException {
-		String host = getWSProperties().getProperty(HOST_PROPERTY);
-		String port = getWSProperties().getProperty(PORT_PROPERTY);
-		return "ws://" + host + ":" + Integer.parseInt(port) + WS_PATH + ENDPOINT_PATH;
+	public static String getURL(String host, String port) throws FileNotFoundException, IOException {
+		// String host = getWSProperties().getProperty(HOST_PROPERTY);
+		// String port = getWSProperties().getProperty(PORT_PROPERTY);
+		return "ws://" + host + ":" + port + WS_PATH + ENDPOINT_PATH;
 	}
 
-	public static void stopServer() throws FileNotFoundException, IOException {
-		getInstance().stop();
+	public static void stopServer(String host, String port) throws FileNotFoundException, IOException {
+		getInstance(host, port).stop();
 	}
 }

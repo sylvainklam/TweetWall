@@ -17,7 +17,9 @@ public class StopTweetWallServer extends Action {
 	@Override
 	public ActionResult doExecute(HttpServletRequest req, RenderContext renderContext, Resource resource, JCRSessionWrapper session,
 			Map<String, List<String>> parameters, URLResolver urlResolver) throws Exception {
-		TweetWallServer.stopServer();
+		String host = renderContext.getRequest().getParameter("host");
+		String port = renderContext.getRequest().getParameter("port");
+		TweetWallServer.stopServer(host, port);
 		return null;
 	}
 }

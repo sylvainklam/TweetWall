@@ -4,6 +4,7 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
+          <string>css/tweetwall.css</string>
           <string>icons/tnt_tweetWall.png</string>
           <string>javascript/tweetwall.js</string>
           <string>META-INF/definitions.cnd</string>

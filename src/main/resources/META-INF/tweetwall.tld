@@ -26,5 +26,41 @@
 		    <required>true</required>
 		    <rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<name>wshost</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>wsport</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>debugEnabled</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		    <type>boolean</type>
+		</attribute>
+		<attribute>
+			<name>OAuthConsumerKey</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>OAuthConsumerSecret</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>OAuthAccessToken</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>OAuthAccessTokenSecret</name>
+		    <required>true</required>
+		    <rtexprvalue>true</rtexprvalue>
+		</attribute>
     </tag>
 </taglib>

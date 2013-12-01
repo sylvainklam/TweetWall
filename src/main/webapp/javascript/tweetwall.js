@@ -33,11 +33,17 @@ function majIHM(url,msg)
 
 function goFullscreen(id) {
     var element = document.getElementById(id);
+    // Firefox
     if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullScreen) {
-      element.webkitRequestFullScreen();
-   }
+    	element.mozRequestFullScreen();
+    } 
+    // Chrome
+    else if (element.webkitRequestFullScreen) {
+    	element.webkitRequestFullScreen();
+    // IE
+    } else if (element.requestFullscreen) {
+    	element.requestFullscreen();
+    }
 }
 
 $(function() {

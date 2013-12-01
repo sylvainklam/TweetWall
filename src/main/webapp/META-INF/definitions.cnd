@@ -4,4 +4,11 @@
 [tnt:tweetWall] > jnt:content, jmix:socialComponent
 - title (string) indexed=no mandatory
 - logo (weakreference, picker[type='image'])
-- track (string) indexed=no mandatory  
+- track (string) indexed=no mandatory
+- wshost (string)='localhost' indexed=no mandatory
+- wsport (long)='8000' indexed=no mandatory
+- debug (boolean) = false indexed=no
+- OAuthConsumerKey (string)='XOu95n0qAppI2DyNCaA' indexed=no mandatory
+- OAuthConsumerSecret (string)='QtaZmr6T0k6f0WKjxrHkqNcxHz5OL2TLtvlSEQKYA' indexed=no mandatory
+- OAuthAccessToken (string)='63670322-IuvdZGEb7rZBENFEz7bvNyRRFKPdo7zBtkFpRulFS' indexed=no mandatory
+- OAuthAccessTokenSecret (string)='2W4JRzmT0m2wR4JYjXnygWCRtaCn7Kccm0L5bgqjgX0XI' indexed=no mandatory

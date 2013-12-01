@@ -21,6 +21,16 @@ public class TweetWallTag extends SimpleTagSupport {
 	private String keywords = null;
 	private String language = null;
 
+	private String wshost = null;
+	private String wsport = null;
+
+	private boolean debugEnabled = false;
+	
+	private String OAuthConsumerKey = null;
+	private String OAuthConsumerSecret = null;
+	private String OAuthAccessToken = null;
+	private String OAuthAccessTokenSecret = null;
+
 	private static Logger logger = Logger.getLogger(TweetWallTag.class);
 
 	public void doTag() throws JspException, IOException {
@@ -30,12 +40,15 @@ public class TweetWallTag extends SimpleTagSupport {
 		logger.info("keywords : " + TweetWallUtils.getInstance().printArrayValues(keywords) + " - language : "
 				+ TweetWallUtils.getInstance().printArrayValues(languages));
 
+		TwitterConfiguration tc = new TwitterConfiguration(isDebugEnabled(), getOAuthConsumerKey(), getOAuthConsumerSecret(), getOAuthAccessToken(),
+				getOAuthAccessTokenSecret());
+
 		TwitterListener.listen(new StatusListener() {
 			public void onStatus(Status status) {
 				Tweet tweet = new Tweet(status);
 				String JSONTweet = new Gson().toJson(tweet);
 				try {
-					TweetWallClient.getSession().getBasicRemote().sendText(JSONTweet);
+					TweetWallClient.getSession(wshost, wsport).getBasicRemote().sendText(JSONTweet);
 				} catch (IOException e) {
 					logger.error(e.getMessage());
 				}
@@ -60,7 +73,7 @@ public class TweetWallTag extends SimpleTagSupport {
 			public void onStallWarning(StallWarning arg0) {
 				logger.info("onStallWarning");
 			}
-		}, keywords, languages);
+		}, keywords, languages, tc);
 	}
 
 	public String getKeywords() {
@@ -77,5 +90,61 @@ public class TweetWallTag extends SimpleTagSupport {
 
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+
+	public String getWshost() {
+		return wshost;
+	}
+
+	public void setWshost(String wshost) {
+		this.wshost = wshost;
+	}
+
+	public String getWsport() {
+		return wsport;
+	}
+
+	public void setWsport(String wsport) {
+		this.wsport = wsport;
+	}
+
+	public String getOAuthConsumerKey() {
+		return OAuthConsumerKey;
+	}
+
+	public void setOAuthConsumerKey(String oAuthConsumerKey) {
+		OAuthConsumerKey = oAuthConsumerKey;
+	}
+
+	public String getOAuthConsumerSecret() {
+		return OAuthConsumerSecret;
+	}
+
+	public void setOAuthConsumerSecret(String oAuthConsumerSecret) {
+		OAuthConsumerSecret = oAuthConsumerSecret;
+	}
+
+	public String getOAuthAccessToken() {
+		return OAuthAccessToken;
+	}
+
+	public void setOAuthAccessToken(String oAuthAccessToken) {
+		OAuthAccessToken = oAuthAccessToken;
+	}
+
+	public String getOAuthAccessTokenSecret() {
+		return OAuthAccessTokenSecret;
+	}
+
+	public void setOAuthAccessTokenSecret(String oAuthAccessTokenSecret) {
+		OAuthAccessTokenSecret = oAuthAccessTokenSecret;
+	}
+
+	public boolean isDebugEnabled() {
+		return debugEnabled;
+	}
+
+	public void setDebugEnabled(boolean debugEnabled) {
+		this.debugEnabled = debugEnabled;
 	}
 }

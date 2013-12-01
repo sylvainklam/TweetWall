@@ -1,0 +1,15 @@
+.tweetwall:-moz-full-screen {
+	background: white;
+}
+ 
+.tweetwall:-webkit-full-screen {
+	background: white;
+}
+ 
+.tweetwall:fullscreen {
+	background: white;
+}
+
+.tweetwall:full-screen {
+	background: white;
+}

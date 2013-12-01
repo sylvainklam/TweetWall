@@ -17,8 +17,10 @@ public class StartTweetWallServer extends Action {
 	@Override
 	public ActionResult doExecute(HttpServletRequest req, RenderContext renderContext, Resource resource, JCRSessionWrapper session,
 			Map<String, List<String>> parameters, URLResolver urlResolver) throws Exception {
-		TweetWallServer.startServer();
-		renderContext.getResponse().getWriter().write(TweetWallServer.getURL());
+		String host = renderContext.getRequest().getParameter("host");
+		String port = renderContext.getRequest().getParameter("port");
+		TweetWallServer.startServer(host, port);
+		renderContext.getResponse().getWriter().write(TweetWallServer.getURL(host, port));
 		return null;
 	}
 }
