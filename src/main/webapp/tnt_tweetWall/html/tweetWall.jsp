@@ -16,7 +16,8 @@
 	<img src="${currentNode.properties.logo.node.url}" />
 	<p><fmt:message key="org.jahia.modules.tweetwall.track.intro"/> : <b>${currentNode.properties.track.string}</b>
 	<br><br><fmt:message key="org.jahia.modules.tweetwall.language"/> : <b>${currentResource.locale.displayLanguage}</b>
-	<br><br>Serveur WebSocket : <b>${currentNode.properties.wshost.string}</b>, port : <b>${currentNode.properties.wsport.long}</b> 
+	<br><br><fmt:message key="org.jahia.modules.tweetwall.websocket.server.name"/> : <b>${currentNode.properties.wshost.string}</b>, 
+	<fmt:message key="org.jahia.modules.tweetwall.websocket.server.port"/> : <b>${currentNode.properties.wsport.long}</b> 
 	<br><br><fmt:message key="org.jahia.modules.tweetwall.edit.howtolaunch"/></p>
 </c:if>
 <c:if test="${renderContext.previewMode}">
@@ -34,16 +35,22 @@
 	<div id="tweetwall" class="tweetwall">
 		<table>
 		<tr>
-			<td><img src="${currentNode.properties.logo.node.url}" /></td>
-			<td><h1><a href="#" onclick="goFullscreen('tweetwall')">${currentNode.properties.title.string}</a></h1></td>
+			<td align="right"><img src="${currentNode.properties.logo.node.url}" /></td>
+			<td align="left"><h1><a href="#" onclick="goFullscreen('tweetwall')">${currentNode.properties.title.string}</a></h1></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><h2><fmt:message key="org.jahia.modules.tweetwall.live.howto"/> : <b>${currentNode.properties.track.string}</b></h2></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="left">
+			<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}" 
+				wshost="${currentNode.properties.wshost.string}" wsport="${currentNode.properties.wsport.long}"
+				debugEnabled="${currentNode.properties.debug.boolean}" OAuthConsumerKey="${currentNode.properties.OAuthConsumerKey.string}" 
+				OAuthConsumerSecret="${currentNode.properties.OAuthConsumerSecret.string}" OAuthAccessToken="${currentNode.properties.OAuthAccessToken.string}" 
+				OAuthAccessTokenSecret="${currentNode.properties.OAuthAccessTokenSecret.string}"/>
+			<div id="log" align="left"></div>
+			</td>
 		</tr>
 		</table>
-		<h2><fmt:message key="org.jahia.modules.tweetwall.live.howto"/> : <b>${currentNode.properties.track.string}</b></h2>
-		<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}" 
-			wshost="${currentNode.properties.wshost.string}" wsport="${currentNode.properties.wsport.long}"
-			debugEnabled="${currentNode.properties.debug.boolean}" OAuthConsumerKey="${currentNode.properties.OAuthConsumerKey.string}" 
-			OAuthConsumerSecret="${currentNode.properties.OAuthConsumerSecret.string}" OAuthAccessToken="${currentNode.properties.OAuthAccessToken.string}" 
-			OAuthAccessTokenSecret="${currentNode.properties.OAuthAccessTokenSecret.string}"/>
-		<div id="log"></div>
 	</div>	
 </c:if>
