@@ -12,22 +12,11 @@ import org.glassfish.tyrus.server.Server;
 public class TweetWallServer {
 
 	private static Server server = null;
-	// private static Properties WSProperties = null;
-
-	// private static final String HOST_PROPERTY = "websocket.server.host";
-	// private static final String PORT_PROPERTY = "websocket.server.port";
 
 	private static final String WS_PATH = "/websocket";
 	private static final String ENDPOINT_PATH = "/tw";
 
 	private static URI serverEndPointURI = null;
-
-	// private static synchronized Properties getWSProperties() throws
-	// FileNotFoundException, IOException {
-	// if (WSProperties == null)
-	// WSProperties = PropertiesLoader.load("/websocket.properties");
-	// return WSProperties;
-	// }
 
 	private static synchronized Server getInstance(String host, String port) throws FileNotFoundException, IOException {
 		if (server == null) {
@@ -46,16 +35,12 @@ public class TweetWallServer {
 
 	public static synchronized URI getServerEndPointURI(String host, String port) throws URISyntaxException, FileNotFoundException, IOException {
 		if (serverEndPointURI == null) {
-			// String host = getWSProperties().getProperty(HOST_PROPERTY);
-			// String port = getWSProperties().getProperty(PORT_PROPERTY);
 			serverEndPointURI = new URI("ws://" + host + ":" + port + WS_PATH + ENDPOINT_PATH);
 		}
 		return serverEndPointURI;
 	}
 
 	public static String getURL(String host, String port) throws FileNotFoundException, IOException {
-		// String host = getWSProperties().getProperty(HOST_PROPERTY);
-		// String port = getWSProperties().getProperty(PORT_PROPERTY);
 		return "ws://" + host + ":" + port + WS_PATH + ENDPOINT_PATH;
 	}
 

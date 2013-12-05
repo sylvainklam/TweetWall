@@ -14,7 +14,7 @@
           <string>resources/JahiaTweetWall_en.properties</string>
           <string>resources/JahiaTweetWall_fr.properties</string>
           <string>tnt_tweetWall/html/tweetWall.jsp</string>
-          <string>WEB-INF/lib/tweetwall-1.0-SNAPSHOT.jar</string>
+          <string>WEB-INF/lib/tweetwall-1.0.jar</string>
           <string>WEB-INF/lib/twitter4j-core-3.0.5.jar</string>
           <string>WEB-INF/lib/twitter4j-stream-3.0.5.jar</string>
           <string>WEB-INF/lib/javax.websocket-api-1.0.jar</string>

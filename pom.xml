@@ -46,7 +46,7 @@
     <groupId>org.jahia.modules</groupId>
     <artifactId>tweetwall</artifactId>
     <name>Jahia Tweet Wall</name>
-    <version>1.0-SNAPSHOT</version>    
+    <version>1.0</version>    
     <packaging>war</packaging>
     <description>This is the custom module (Jahia Tweet Wall) for running on a Jahia server.</description>
     <repositories>
