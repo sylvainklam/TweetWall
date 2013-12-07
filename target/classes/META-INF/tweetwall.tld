@@ -37,28 +37,28 @@
 		    <rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>debugEnabled</name>
+			<name>debug</name>
 		    <required>true</required>
 		    <rtexprvalue>true</rtexprvalue>
 		    <type>boolean</type>
 		</attribute>
 		<attribute>
-			<name>OAuthConsumerKey</name>
+			<name>consumerKey</name>
 		    <required>true</required>
 		    <rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>OAuthConsumerSecret</name>
+			<name>consumerSecret</name>
 		    <required>true</required>
 		    <rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>OAuthAccessToken</name>
+			<name>accessToken</name>
 		    <required>true</required>
 		    <rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<name>OAuthAccessTokenSecret</name>
+			<name>accessTokenSecret</name>
 		    <required>true</required>
 		    <rtexprvalue>true</rtexprvalue>
 		</attribute>

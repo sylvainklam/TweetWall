@@ -2,60 +2,58 @@ package org.jahia.modules.tweetwall;
 
 public class TwitterConfiguration {
 
-	private boolean debugEnabled;
+	private boolean debug;
 
-	private String OAuthConsumerKey;
-	private String OAuthConsumerSecret;
-	private String OAuthAccessToken;
-	private String OAuthAccessTokenSecret;
+	private String consumerKey;
+	private String consumerSecret;
+	private String accessToken;
+	private String accessTokenSecret;
 
-	public TwitterConfiguration(boolean debug, String OAuthConsumerKey, String OAuthConsumerSecret, String OAuthAccessToken,
-			String OAuthAccessTokenSecret) {
-		this.debugEnabled = debug;
-		this.OAuthConsumerKey = OAuthConsumerKey;
-		this.OAuthConsumerSecret = OAuthConsumerSecret;
-		this.OAuthAccessToken = OAuthAccessToken;
-		this.OAuthAccessTokenSecret = OAuthAccessTokenSecret;
+	public TwitterConfiguration(boolean debug, String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
+		this.setDebug(debug);
+		this.setConsumerKey(consumerKey);
+		this.setConsumerSecret(consumerSecret);
+		this.setAccessToken(accessToken);
+		this.setAccessTokenSecret(accessTokenSecret);
 	}
 
-	public String getOAuthConsumerKey() {
-		return OAuthConsumerKey;
+	public boolean isDebug() {
+		return debug;
 	}
 
-	public void setOAuthConsumerKey(String oAuthConsumerKey) {
-		OAuthConsumerKey = oAuthConsumerKey;
+	public void setDebug(boolean debug) {
+		this.debug = debug;
 	}
 
-	public String getOAuthConsumerSecret() {
-		return OAuthConsumerSecret;
+	public String getConsumerKey() {
+		return consumerKey;
 	}
 
-	public void setOAuthConsumerSecret(String oAuthConsumerSecret) {
-		OAuthConsumerSecret = oAuthConsumerSecret;
+	public void setConsumerKey(String consumerKey) {
+		this.consumerKey = consumerKey;
 	}
 
-	public String getOAuthAccessToken() {
-		return OAuthAccessToken;
+	public String getConsumerSecret() {
+		return consumerSecret;
 	}
 
-	public void setOAuthAccessToken(String oAuthAccessToken) {
-		OAuthAccessToken = oAuthAccessToken;
+	public void setConsumerSecret(String consumerSecret) {
+		this.consumerSecret = consumerSecret;
 	}
 
-	public String getOAuthAccessTokenSecret() {
-		return OAuthAccessTokenSecret;
+	public String getAccessToken() {
+		return accessToken;
 	}
 
-	public void setOAuthAccessTokenSecret(String oAuthAccessTokenSecret) {
-		OAuthAccessTokenSecret = oAuthAccessTokenSecret;
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
 
-	public boolean isDebugEnabled() {
-		return debugEnabled;
+	public String getAccessTokenSecret() {
+		return accessTokenSecret;
 	}
 
-	public void setDebugEnabled(boolean debugEnabled) {
-		this.debugEnabled = debugEnabled;
+	public void setAccessTokenSecret(String accessTokenSecret) {
+		this.accessTokenSecret = accessTokenSecret;
 	}
-
 }

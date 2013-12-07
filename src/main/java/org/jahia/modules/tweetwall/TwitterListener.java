@@ -14,8 +14,8 @@ public class TwitterListener {
 	public static final void listen(StatusListener listener, String[] keywords, String[] languages, TwitterConfiguration tc) {
 		logger.info("start listening ...");
 		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(tc.isDebugEnabled()).setOAuthConsumerKey(tc.getOAuthConsumerKey()).setOAuthConsumerSecret(tc.getOAuthConsumerSecret())
-				.setOAuthAccessToken(tc.getOAuthAccessToken()).setOAuthAccessTokenSecret(tc.getOAuthAccessTokenSecret());
+		cb.setDebugEnabled(tc.isDebug()).setOAuthConsumerKey(tc.getConsumerKey()).setOAuthConsumerSecret(tc.getConsumerSecret())
+				.setOAuthAccessToken(tc.getAccessToken()).setOAuthAccessTokenSecret(tc.getAccessTokenSecret());
 		TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
 		FilterQuery query = new FilterQuery();
 		query.track(keywords);

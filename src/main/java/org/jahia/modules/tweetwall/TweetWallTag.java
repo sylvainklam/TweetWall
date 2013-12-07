@@ -7,14 +7,6 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import org.apache.log4j.Logger;
 import org.jahia.modules.tweetwall.utils.TweetWallUtils;
-import org.jahia.modules.tweetwall.websocket.TweetWallClient;
-
-import twitter4j.StallWarning;
-import twitter4j.Status;
-import twitter4j.StatusDeletionNotice;
-import twitter4j.StatusListener;
-
-import com.google.gson.Gson;
 
 public class TweetWallTag extends SimpleTagSupport {
 
@@ -24,12 +16,12 @@ public class TweetWallTag extends SimpleTagSupport {
 	private String wshost = null;
 	private String wsport = null;
 
-	private boolean debugEnabled = false;
-	
-	private String OAuthConsumerKey = null;
-	private String OAuthConsumerSecret = null;
-	private String OAuthAccessToken = null;
-	private String OAuthAccessTokenSecret = null;
+	private boolean debug = false;
+
+	private String consumerKey = null;
+	private String consumerSecret = null;
+	private String accessToken = null;
+	private String accessTokenSecret = null;
 
 	private static Logger logger = Logger.getLogger(TweetWallTag.class);
 
@@ -39,41 +31,8 @@ public class TweetWallTag extends SimpleTagSupport {
 
 		logger.info("keywords : " + TweetWallUtils.getInstance().printArrayValues(keywords) + " - language : "
 				+ TweetWallUtils.getInstance().printArrayValues(languages));
-
-		TwitterConfiguration tc = new TwitterConfiguration(isDebugEnabled(), getOAuthConsumerKey(), getOAuthConsumerSecret(), getOAuthAccessToken(),
-				getOAuthAccessTokenSecret());
-
-		TwitterListener.listen(new StatusListener() {
-			public void onStatus(Status status) {
-				Tweet tweet = new Tweet(status);
-				String JSONTweet = new Gson().toJson(tweet);
-				try {
-					TweetWallClient.getSession(wshost, wsport).getBasicRemote().sendText(JSONTweet);
-				} catch (IOException e) {
-					logger.error(e.getMessage());
-				}
-			}
-
-			public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
-				logger.info("onDeletionNotice");
-			}
-
-			public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-				logger.info("onTrackLimitationNotice");
-			}
-
-			public void onScrubGeo(long userId, long upToStatusId) {
-				logger.info("onScrubGeo");
-			}
-
-			public void onException(Exception ex) {
-				logger.error(ex.getMessage());
-			}
-
-			public void onStallWarning(StallWarning arg0) {
-				logger.info("onStallWarning");
-			}
-		}, keywords, languages, tc);
+		TwitterConfiguration tc = new TwitterConfiguration(isDebug(), getConsumerKey(), getConsumerSecret(), getAccessToken(), getAccessTokenSecret());
+		TwitterListener.listen(new TweetWallStatusListener(getWshost(), getWsport()), keywords, languages, tc);
 	}
 
 	public String getKeywords() {
@@ -108,43 +67,43 @@ public class TweetWallTag extends SimpleTagSupport {
 		this.wsport = wsport;
 	}
 
-	public String getOAuthConsumerKey() {
-		return OAuthConsumerKey;
+	public String getConsumerKey() {
+		return consumerKey;
 	}
 
-	public void setOAuthConsumerKey(String oAuthConsumerKey) {
-		OAuthConsumerKey = oAuthConsumerKey;
+	public void setConsumerKey(String consumerKey) {
+		this.consumerKey = consumerKey;
 	}
 
-	public String getOAuthConsumerSecret() {
-		return OAuthConsumerSecret;
+	public String getConsumerSecret() {
+		return consumerSecret;
 	}
 
-	public void setOAuthConsumerSecret(String oAuthConsumerSecret) {
-		OAuthConsumerSecret = oAuthConsumerSecret;
+	public void setConsumerSecret(String consumerSecret) {
+		this.consumerSecret = consumerSecret;
 	}
 
-	public String getOAuthAccessToken() {
-		return OAuthAccessToken;
+	public String getAccessToken() {
+		return accessToken;
 	}
 
-	public void setOAuthAccessToken(String oAuthAccessToken) {
-		OAuthAccessToken = oAuthAccessToken;
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
 
-	public String getOAuthAccessTokenSecret() {
-		return OAuthAccessTokenSecret;
+	public String getAccessTokenSecret() {
+		return accessTokenSecret;
 	}
 
-	public void setOAuthAccessTokenSecret(String oAuthAccessTokenSecret) {
-		OAuthAccessTokenSecret = oAuthAccessTokenSecret;
+	public void setAccessTokenSecret(String accessTokenSecret) {
+		this.accessTokenSecret = accessTokenSecret;
 	}
 
-	public boolean isDebugEnabled() {
-		return debugEnabled;
+	public boolean isDebug() {
+		return debug;
 	}
 
-	public void setDebugEnabled(boolean debugEnabled) {
-		this.debugEnabled = debugEnabled;
+	public void setDebug(boolean debug) {
+		this.debug = debug;
 	}
 }

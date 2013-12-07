@@ -34,9 +34,9 @@
 <c:if test="${renderContext.liveMode}">
 	<tweetwall:display keywords="${currentNode.properties.track.string}" language="${currentResource.locale}" 
 			wshost="${currentNode.properties.wshost.string}" wsport="${currentNode.properties.wsport.long}"
-			debugEnabled="${currentNode.properties.debug.boolean}" OAuthConsumerKey="${currentNode.properties.OAuthConsumerKey.string}" 
-			OAuthConsumerSecret="${currentNode.properties.OAuthConsumerSecret.string}" OAuthAccessToken="${currentNode.properties.OAuthAccessToken.string}" 
-			OAuthAccessTokenSecret="${currentNode.properties.OAuthAccessTokenSecret.string}"/>
+			debug="${currentNode.properties.debug.boolean}" consumerKey="${currentNode.properties.consumerkey.string}" 
+			consumerSecret="${currentNode.properties.consumersecret.string}" accessToken="${currentNode.properties.accesstoken.string}" 
+			accessTokenSecret="${currentNode.properties.accesstokensecret.string}"/>
 	<div id="tweetwall" class="tweetwall">
 		<table>
 		<tr>
